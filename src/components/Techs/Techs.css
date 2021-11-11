@@ -1,0 +1,106 @@
+.techs {
+    max-width: 1280px;
+    min-height: 388px;
+    margin: 0 auto;
+    padding: 100px 70px;
+    box-sizing: border-box;
+    background-color: #F5F5F5;
+}
+
+.techs__title {
+    margin: 0;
+    padding-bottom: 23px;
+    border-bottom: 1px solid #000;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 27px;
+}
+
+.techs__subtitle {
+    margin: 0 auto;
+    padding: 90px 0 26px;
+    text-align: center;
+    font-size: 50px;
+    line-height: 58px;
+    font-weight: 400;
+    max-width: 600px;
+}
+
+.techs__paragraph {
+    margin: 0 auto;
+    padding: 0 0 100px 0;
+    text-align: center;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    max-width: 460px;
+}
+
+.techs__items {
+    display: flex;
+    justify-content: space-between;
+    max-width: 690px;
+    margin: 0 auto;
+}
+
+.techs__item {
+    text-align: center;
+    background-color: #E8E8E8;
+    min-width: 90px;
+    padding: 20px 0;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 780px) {
+    .techs {
+        padding: 90px 60px;
+    }
+    .techs__subtitle {
+        padding: 80px 0 25px;
+    }
+    .techs__paragraph {
+        font-size: 12px;
+        line-height: 18px;
+        padding: 0 0 83px 0;
+    }
+    .techs__item {
+        font-size: 12px;
+        line-height: 15px;
+        min-width: 84px;
+    }
+}
+
+@media screen and (max-width: 745px) {
+    .techs__items {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        padding: 0;
+        margin: 0 auto;
+        max-width: 178px;
+    }
+    .techs__item {
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+    .techs__item:nth-last-of-type(2n) {
+        margin-right: 0px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .techs {
+        padding: 70px 18px;
+        background-color: #fff;
+    }
+    .techs__subtitle {
+        font-size: 30px;
+        line-height: 37px;
+        padding: 60px 0 24px;
+    }
+    .techs__paragraph {
+        font-size: 11px;
+        line-height: 16px;
+        padding-bottom: 50px;
+        max-width: 292px;
+    }
+}
