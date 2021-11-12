@@ -11,7 +11,7 @@ function SearchForm() {
             <div className="searchform__container">
                 <form className="searchform__main">
                     <img src={icon} className="searchform__icon" alt="icon"></img>
-                    <input className="searchform__input" placeholder="Фильм" type="text" />
+                    <input className="searchform__input" placeholder="Фильм" type="text" required />
                     <button type="submit" className="searchform__button"></button>
                 </form>
                 <div className="searchform__addition">

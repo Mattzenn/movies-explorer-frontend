@@ -3,8 +3,18 @@ import { useLocation } from "react-router-dom";
 
 import React from "react";
 
-
 function MoviesCard({ movie }) {
+
+    const [isLiked, setIsSave] = React.useState(false);
+
+    function handleSaveClick() {
+        setIsSave(true);
+    }
+
+    const cardSaveClassName = (
+        `movies__card-button ${isLiked ? 'movies__card-save-active' : 'movies__card-save'}`
+    );
+
     const location = useLocation();
 
     return (
@@ -14,7 +24,19 @@ function MoviesCard({ movie }) {
                 <h2 className="movies__card-title">{movie.title}</h2>
                 <p className="movies__card-movie-time">{movie.time}</p>
             </div>
-            <button type="button" className={location.pathname === "/movies" ? "movies__card-button movies__card-save" : " movies__card-button movie__card-delete"}></button>
+
+            <>
+                {location.pathname === "/movies" ?
+
+                    <button type="button" className={cardSaveClassName} onClick={handleSaveClick}></button>
+
+                    :
+
+                    <button type="button" className={"movies__card-button movie__card-delete"}></button>
+
+                }
+            </>
+
         </li>
     )
 }

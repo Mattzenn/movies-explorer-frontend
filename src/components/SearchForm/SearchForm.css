@@ -34,6 +34,7 @@
     background-color: #F9F9F9;
     color: #A0A0A0;
     outline-color: #F9F9F9;
+    display: block;
 }
 
 .searchform__button {
@@ -46,6 +47,10 @@
     background-repeat: no-repeat;
     background-position: center;
     position: relative;
+}
+
+.searchform__button:hover {
+    opacity: 0.8;
 }
 
 .searchform__icon {
@@ -160,7 +165,7 @@
     }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 500px) {
     .searchform__container {
         margin: 80px auto 0 auto;
         flex-direction: column;

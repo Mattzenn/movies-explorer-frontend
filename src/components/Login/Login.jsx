@@ -11,7 +11,9 @@ function Login() {
             <div className='login-page'>
                 <form className='login__form'>
                     <Link to="/" title="На главную" className="login__logo" />
-                    <h2 className='login__title'>Добро пожаловать!</h2>
+
+                    <h2 className='login__title'>Рады видеть!</h2>
+
 
                     <label className="login__input-label">E-mail</label>
                     <input name="Email" type="email" className="login__input login__input_type_login" id="email" placeholder="Email" minLength="6" maxLength="40" required />
