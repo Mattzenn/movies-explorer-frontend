@@ -6,6 +6,10 @@
     width: 100%;
 }
 
+.register__button_disabled {
+    opacity: 0.8;
+}
+
 .register__input {
     font-size: 14px;
     line-height: 17px;
@@ -13,9 +17,9 @@
     border: none;
     box-sizing: border-box;
     border-bottom: 1px solid #E8E8E8;
-    outline-color: #fff;
     padding-bottom: 13px;
     font-weight: 400;
+    outline: 1px #2BE080;
 }
 
 .register__input-error {
@@ -141,19 +145,24 @@
         line-height: 22px;
         max-width: 238px;
     }
+
     .register__logo {
         margin: 0 auto;
     }
+
     .register__button {
         font-size: 12px;
         line-height: 15px;
     }
+
     .register__form {
         max-width: 260px;
     }
+
     .register__form {
         margin: 56px auto 0;
     }
+
     .register__link {
         font-size: 12px;
         line-height: 15px;

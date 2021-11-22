@@ -59,10 +59,6 @@
   top: 50%;
 }
 
-.header__logged-button_active {
-  font-weight: 500;
-}
-
 .header__logged-button_account {
   margin: 0;
   font-weight: 500;
@@ -145,16 +141,19 @@
 }
 
 .header__logged-button_active {
-  font-weight: 500;
+  font-weight: 700;
+  /* color: red; */
 }
 
 @media screen and (max-width: 768px) {
   .nav__button {
     display: block;
   }
+
   .header {
     padding: 21px 30px;
   }
+
   .header__button-container_registered {
     display: none;
   }

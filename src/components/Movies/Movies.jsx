@@ -1,129 +1,82 @@
-import './Movies.css'
+import './Movies.css';
+import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
+import SearchForm from '../SearchForm/SearchForm';
 
 import React from "react";
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
 
-function Movies() {
-    const movies = [
-        {
-            image: "https://avatars.mds.yandex.net/get-kinopoisk-image/4774061/58a86807-b6e2-45dc-8780-c38f24e6a4ea/600x900",
-            title: "Название Фильма",
-            time: "1ч 42м",
-            _id: 1,
-            like: true,
-        },
-        {
-            image: "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/1af351fb-a961-4a52-8e4b-d9f0d740a1bf/600x900",
-            title: "Название Фильма",
-            time: "1ч 42м",
-            _id: 2,
-            like: false,
-        },
-        {
-            image: "https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/1f270385-327f-4084-aea4-bdfd1f7c4ac1/576x",
-            title: "Название Фильма",
-            time: "1ч 42м",
-            _id: 3,
-            like: false,
-        },
-        {
-            image: "https://avatars.mds.yandex.net/get-kinopoisk-image/4774061/58a86807-b6e2-45dc-8780-c38f24e6a4ea/600x900",
-            title: "Название Фильма",
-            time: "1ч 42м",
-            _id: 4,
-            like: false,
-        },
-        {
-            image: "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/1af351fb-a961-4a52-8e4b-d9f0d740a1bf/600x900",
-            title: "Название Фильма",
-            time: "1ч 42м",
-            _id: 5,
-            like: true,
-        },
-        {
-            image: "https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/1f270385-327f-4084-aea4-bdfd1f7c4ac1/576x",
-            title: "Название Фильма",
-            time: "1ч 42м",
-            _id: 6,
-            like: true,
-        },
-        {
-            image: "https://avatars.mds.yandex.net/get-kinopoisk-image/4774061/58a86807-b6e2-45dc-8780-c38f24e6a4ea/600x900",
-            title: "Название Фильма",
-            time: "1ч 42м",
-            _id: 7,
-            like: false,
-        },
-        {
-            image: "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/1af351fb-a961-4a52-8e4b-d9f0d740a1bf/600x900",
-            title: "Название Фильма",
-            time: "1ч 42м",
-            _id: 8,
-            like: false,
-        },
-        {
-            image: "https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/1f270385-327f-4084-aea4-bdfd1f7c4ac1/576x",
-            title: "Название Фильма",
-            time: "1ч 42м",
-            _id: 9,
-            like: true,
-        },
-        {
-            image: "https://avatars.mds.yandex.net/get-kinopoisk-image/4774061/58a86807-b6e2-45dc-8780-c38f24e6a4ea/600x900",
-            title: "Название Фильма",
-            time: "1ч 42м",
-            _id: 10,
-            like: false,
-        },
-        {
-            image: "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/1af351fb-a961-4a52-8e4b-d9f0d740a1bf/600x900",
-            title: "Название Фильма",
-            time: "1ч 42м",
-            _id: 11,
-            like: false,
-        },
-        {
-            image: "https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/1f270385-327f-4084-aea4-bdfd1f7c4ac1/576x",
-            title: "Название Фильма",
-            time: "1ч 42м",
-            _id: 12,
-            like: false,
-        },
-        {
-            image: "https://avatars.mds.yandex.net/get-kinopoisk-image/4774061/58a86807-b6e2-45dc-8780-c38f24e6a4ea/600x900",
-            title: "Название Фильма",
-            time: "1ч 42м",
-            _id: 13,
-            like: false,
-        },
-        {
-            image: "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/1af351fb-a961-4a52-8e4b-d9f0d740a1bf/600x900",
-            title: "Название Фильма",
-            time: "1ч 42м",
-            _id: 14,
-            like: false,
-        },
-        {
-            image: "https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/1f270385-327f-4084-aea4-bdfd1f7c4ac1/576x",
-            title: "Название Фильма",
-            time: "1ч 42м",
-            _id: 15,
-            like: false,
-        },
-        {
-            image: "https://avatars.mds.yandex.net/get-kinopoisk-image/4774061/58a86807-b6e2-45dc-8780-c38f24e6a4ea/600x900",
-            title: "Название Фильма",
-            time: "1ч 42м",
-            _id: 16,
-            like: true,
-        },
-    ]
+
+function Movies({ isBurger, onBurger, films, loggedIn, saveMovie, onDelete, moviesSaved, isPreloader, setIsPreloader }) {
+
+    const [isinputvalue, setIsinputvalue] = React.useState('');
+    const [isNewArr, setNewArr] = React.useState([]);
+    const [isTextSearch, setIsTextSearch] = React.useState(true);
+
+
+    const [isShort, setIsShort] = React.useState(false);
+    const [searchSuccessful, setSearchSuccessful] = React.useState(false);
+
+
+    function handleCheckbox(boolean) {
+        setIsShort(boolean)
+    }
+
+    function handleKeyword(value) {
+        setIsinputvalue(value)
+    }
+
+    function writeNewArr(newArr) {
+        setNewArr(newArr)
+    }
+
+    // 3. тест
+
+    // проверка данных фильмов из localStorage
+    React.useEffect(() => {
+        let localMovies = JSON.parse(localStorage.getItem('films'));
+        if (localMovies === null) {
+            localMovies = []
+        }
+        setNewArr(localMovies);
+        console.log(isNewArr)
+    }, [])
+
+    // добавление данных фильмов в localStorage
+    React.useEffect(() => {
+        localStorage.setItem('films', JSON.stringify(isNewArr));
+    }, [isNewArr])
+
+
+
+    function handleButton() {
+
+        setIsPreloader(true);
+
+        function findMovies(movie, keyword) {
+            return movie.nameRU.toLowerCase().includes(keyword.toLowerCase())
+        }
+
+        setIsPreloader(false);
+
+        setIsTextSearch(false);
+
+        return films.filter((movie) => {
+            if (isShort) {
+                return findMovies(movie, isinputvalue) && movie.duration < 40;
+            } else {
+                return findMovies(movie, isinputvalue);
+            }
+        })
+    }
 
     return (
         <section className="movies">
-            <MoviesCardList movies={movies} />
-            <button className="movies__more-films">Ещё</button>
+            <Header isBurger={isBurger} onBurger={onBurger} loggedIn={loggedIn} checkbox={handleCheckbox} />
+            <SearchForm keyword={isinputvalue} isinputvalue={handleKeyword} submit={handleButton} checkBoxClick={handleCheckbox} newArr={writeNewArr} />
+            <MoviesCardList movies={isNewArr} saveMovie={saveMovie} onDelete={onDelete} moviesSaved={moviesSaved} />
+            <Footer />
         </section>
     )
 }

@@ -2,51 +2,64 @@ import './SavedMovies.css'
 
 import React from "react";
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import SearchForm from '../SearchForm/SearchForm';
+import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
 
+function SavedMovies({ isBurger, onBurger, handleBurger, loggedIn, films, onDelete, saveMovie }) {
 
-function SavedMovies() {
-    const savedmovies = [
-        {
-            image: "https://avatars.mds.yandex.net/get-kinopoisk-image/4774061/58a86807-b6e2-45dc-8780-c38f24e6a4ea/600x900",
-            title: "Название Фильма",
-            time: "1ч 42м",
-            _id: 1,
-            like: true,
-        },
-        {
-            image: "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/1af351fb-a961-4a52-8e4b-d9f0d740a1bf/600x900",
-            title: "Название Фильма",
-            time: "1ч 42м",
-            _id: 2,
-            like: false,
-        },
-        {
-            image: "https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/1f270385-327f-4084-aea4-bdfd1f7c4ac1/576x",
-            title: "Название Фильма",
-            time: "1ч 42м",
-            _id: 3,
-            like: false,
-        },
-        {
-            image: "https://avatars.mds.yandex.net/get-kinopoisk-image/4774061/58a86807-b6e2-45dc-8780-c38f24e6a4ea/600x900",
-            title: "Название Фильма",
-            time: "1ч 42м",
-            _id: 4,
-            like: false,
-        },
-        {
-            image: "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/1af351fb-a961-4a52-8e4b-d9f0d740a1bf/600x900",
-            title: "Название Фильма",
-            time: "1ч 42м",
-            _id: 5,
-            like: true,
+    const [isinputvalue, setIsinputvalue] = React.useState('');
+    const [isNewArr, setNewArr] = React.useState([]);
+    const [isTextSearch, setIsTextSearch] = React.useState(true);
+
+    const [isShort, setIsShort] = React.useState(false);
+
+    function handleCheckbox(boolean) {
+        setIsShort(boolean)
+        console.log(isShort)
+    }
+
+    function handleKeyword(value) {
+        console.log(value)
+        setIsinputvalue(value)
+        console.log(isinputvalue)
+    }
+
+    function writeNewArr(newArr) {
+        setNewArr(newArr)
+
+        console.log(newArr)
+    }
+
+    console.log(films)
+
+    function handleButton() {
+
+        function findMovies(movie, keyword) {
+            console.log(isShort)
+            return movie.nameRU.toLowerCase().includes(keyword.toLowerCase())
         }
-    ]
+
+        setIsTextSearch(false);
+
+        return films.filter((movie) => {
+            if (isShort) {
+                return findMovies(movie, isinputvalue) && movie.duration < 40;
+            } else {
+                return findMovies(movie, isinputvalue);
+            }
+        })
+    }
+
 
     return (
         <section className="movies">
-            <MoviesCardList movies={savedmovies} />
-            <button className="movies__more-films">Ещё</button>
+
+            <Header isBurger={isBurger} onBurger={onBurger} loggedIn={loggedIn} checkbox={handleCheckbox} />
+            <SearchForm keyword={isinputvalue} isinputvalue={handleKeyword} submit={handleButton} checkBoxClick={handleCheckbox} newArr={writeNewArr} saveMovie={saveMovie} />
+            <MoviesCardList movies={isNewArr} saveMovie={saveMovie} onDelete={onDelete} moviesSaved={films} />
+            <Footer />
+
         </section>
     )
 }

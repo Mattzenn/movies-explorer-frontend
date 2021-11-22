@@ -2,14 +2,11 @@ import './Header.css'
 import React from 'react';
 import { Link } from "react-router-dom";
 import Burger from "../Burger/Burger";
+import { useLocation } from "react-router-dom";
 
-import { useLocation } from 'react-router';
-
-function Header({ path = false, isBurger, onBurger }) {
+function Header({ isBurger, onBurger, loggedIn }) {
 
   const location = useLocation();
-
-  const loggedIn = true;
 
   return (
     <>
@@ -30,8 +27,8 @@ function Header({ path = false, isBurger, onBurger }) {
 
             <Link to="/" className="header__logo" />
             <div className="header__button-container header__button-container_registered header_registered-buttons">
-              <Link to="/movies" className={location.pathname === "/movies" ? 'header__logged-button_active header__logged-button' : 'header__logged-button', location.pathname === "/" ? 'header__logged-button_type_mainpage header__logged-button' : 'header__logged-button'}>Фильмы</Link>
-              <Link to="/saved-movies" className={location.pathname === "/saved-movies" ? 'header__logged-button_active header__logged-button' : 'header__logged-button', location.pathname === "/" ? 'header__logged-button_type_mainpage header__logged-button' : 'header__logged-button'}>Сохраненные фильмы</Link>
+              <Link to="/movies" className={location.pathname === '/movies' ? 'header__logged-button header__logged-button_active' : 'header__logged-button'}>Фильмы</Link>
+              <Link to="/saved-movies" className={location.pathname === "/saved-movies" ? 'header__logged-button_active header__logged-button' : 'header__logged-button'}>Сохраненные фильмы</Link>
             </div>
             <div className="header__button-container header__button-container_registered">
               <Link to="/profile" className={location.pathname === "/" ? 'header__logged-button_account_type_mainpage header__logged-button header__logged-button_account' : 'header__logged-button header__logged-button_account'}>Аккаунт<span className="header__account-icon"></span></Link>

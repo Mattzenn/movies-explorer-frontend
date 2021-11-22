@@ -6,6 +6,10 @@
     width: 100%;
 }
 
+.login__button_disabled {
+    opacity: 0.8;
+}
+
 .login__input {
     font-size: 14px;
     line-height: 17px;
@@ -13,7 +17,7 @@
     border: none;
     box-sizing: border-box;
     border-bottom: 1px solid #E8E8E8;
-    outline-color: #fff;
+    outline: 1px #2BE080;
     padding-bottom: 13px;
     font-weight: 400;
 }
@@ -147,20 +151,25 @@
         line-height: 22px;
         max-width: 238px;
     }
+
     .login__logo {
         margin: 0 auto;
     }
+
     .login__button {
         font-size: 12px;
         line-height: 15px;
         margin-top: 287px;
     }
+
     .login__form {
         max-width: 260px;
     }
+
     .login__form {
         margin: 56px auto 0;
     }
+
     .login__link {
         font-size: 12px;
         line-height: 15px;
