@@ -85,7 +85,7 @@ class MainApi {
 }
   //запись всего класса Api в переменную и её импорт
   const mainApi = new MainApi({
-    url: "http://localhost:3000",
+    url: "https://api.mattzenn-movies.nomoredomains.rocks",
     headers: {
       "Content-type": "application/json",
     },

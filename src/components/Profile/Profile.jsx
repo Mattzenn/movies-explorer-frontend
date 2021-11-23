@@ -12,6 +12,7 @@ export default function Profile({ isBurger, onBurger, loggedIn, signOut, onUpdat
     // создание переменных состояния для хранения имени и информации о пользователе
     const [name, setName] = React.useState('');
     const [email, setEmail] = React.useState('');
+    const [active, setActive] = React.useState('false');
     //создание контекста о пользователе
     const currentUser = React.useContext(CurrentUserContext);
 
@@ -27,6 +28,8 @@ export default function Profile({ isBurger, onBurger, loggedIn, signOut, onUpdat
         e.preventDefault();
 
         onUpdateUser(values.name, values.email);
+        setActive(false)
+
     }
 
     return (
