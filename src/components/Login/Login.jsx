@@ -1,5 +1,4 @@
 import './Login.css'
-
 import React from "react";
 import { Link } from 'react-router-dom';
 import { useFormWithValidation } from "../../utils/useFormWithValidation";
@@ -7,24 +6,10 @@ import { useFormWithValidation } from "../../utils/useFormWithValidation";
 
 function Login({ onLogin }) {
 
-    // //стей пременные инпутов
-    // const [email, setEmail] = React.useState("");
-    // const [password, setPassword] = React.useState("");
-
-
-    // function handleChangeEmail(e) {
-    //     setEmail(e.target.value);
-    // }
-
-    // function handleChangePassword(e) {
-    //     setPassword(e.target.value);
-    // }
-
     const { values, errors, isValid, handleChange } = useFormWithValidation();
 
     function handleSubmit(evt) {
         evt.preventDefault();
-        console.log(values)
         // отправка данных для логина
         onLogin(values.email, values.password);
     }

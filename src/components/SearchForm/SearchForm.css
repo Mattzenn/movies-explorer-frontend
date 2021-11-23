@@ -37,7 +37,7 @@
     line-height: 20px;
     background-color: #F9F9F9;
     color: #A0A0A0;
-    outline-color: #F9F9F9;
+    outline: 1px #F9F9F9;
     display: block;
 }
 

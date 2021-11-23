@@ -10,7 +10,7 @@ function AboutMe() {
                 <div className="aboutme__container">
                     <h3 className="aboutme__name">Матвей</h3>
                     <p className="aboutme__profession">Фронтенд-разработчик, 22 года</p>
-                    <p className="aboutme__info">Я родился и живу в Саратове, закончил факультет экономики СГУ. Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с постоянной работы.</p>
+                    <p className="aboutme__info">Я родился и живу в Москве, закончил факультет экономики в РАНХиГС (бакалавр) и факультет экономического консалтинга в РЭУ им. Г.В.Плеханова (магистратура). Я люблю кататься на сноуборде, а ещё увлекаюсь спортом. Недавно начал кодить. С 2018 года работаю в компании «Бош». Также дополнительно прошел курс "Инернет-маркетинг" в Яндекс практикуме. Уже сейчас я применяю свои знания по веб-разработке на практике и дальше развиваюсь в веб-разработке.</p>
                     <div className="aboutme__social">
                         <div className="aboutme__social-item"><a target="_blank" rel="noreferrer" href="https://www.facebook.com/" className="aboutme__link">Facebook</a></div>
                         <div className="aboutme__social-item"><a target="_blank" rel="noreferrer" href="https://github.com/" className="aboutme__link">Github</a></div>

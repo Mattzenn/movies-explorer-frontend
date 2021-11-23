@@ -6,6 +6,10 @@
     margin: 0 auto;
 }
 
+.movies__card-del {
+    display: none;
+}
+
 .movies__card-image {
     width: 360px;
     height: 201px;
@@ -79,21 +83,26 @@
     .movies__card-button {
         display: block;
     }
+
     .movies__card-image {
         width: 300px;
         height: 168px;
     }
+
     .movies__card-title {
         font-size: 12px;
         line-height: 15px;
     }
+
     .movies__container {
         padding: 16px 0 29px;
     }
+
     .movies__card-movie-time {
         font-size: 11px;
         line-height: 10px;
     }
+
     .movies__container {
         padding: 16px 0 0 0;
     }

@@ -5,30 +5,18 @@ import React from "react";
 
 function MoviesCard({ movie, onDelete, saved, saveMovie }) {
 
-    const [isLiked, setIsSave] = React.useState(false);
-
-    // function handleSaveClick() {
-    //     setIsSave(true);
-    // }
-
     function putOderDeleteLike() {
-        //props.setIsPreloader(true)
         if (!saved) {
             saveMovie(movie)
         }
         else {
             onDelete(movie.id)
         }
-
     }
 
     function deleteMovie() {
-        console.log(movie.id)
         onDelete(movie.id)
-
     }
-
-
 
     const cardSaveClassName = (
         `movies__card-button ${saved ? 'movies__card-save-active' : 'movies__card-save'}`
@@ -53,7 +41,7 @@ function MoviesCard({ movie, onDelete, saved, saveMovie }) {
                 <img className="movies__card-image" src={location.pathname === "/movies" ? `https://api.nomoreparties.co${movie.image.url}` : movie.image} alt={movie.nameRU}></img>
             </a>
             <div className="movies__container">
-                <h2 className="movies__card-title">{movie.nameRU}</h2>
+                <h2 className="movies__card-title">{movie.id}{movie.nameRU}</h2>
                 <p className="movies__card-movie-time">{transformTime(movie.duration)}</p>
             </div>
 

@@ -2,22 +2,25 @@ import './Movies.css';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
-
 import React from "react";
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
 
 
-function Movies({ isBurger, onBurger, films, loggedIn, saveMovie, onDelete, moviesSaved, isPreloader, setIsPreloader }) {
+function Movies({ isBurger, onBurger, films, loggedIn, saveMovie, onDelete, moviesSaved, setIsPreloader }) {
 
     const [isinputvalue, setIsinputvalue] = React.useState('');
-    const [isNewArr, setNewArr] = React.useState([]);
+    const [isNewArr, setNewArr] = React.useState([films]);
     const [isTextSearch, setIsTextSearch] = React.useState(true);
-
-
     const [isShort, setIsShort] = React.useState(false);
-    const [searchSuccessful, setSearchSuccessful] = React.useState(false);
+    // const [searchSuccessful, setSearchSuccessful] = React.useState(false);
 
+
+    const filterShortFilm = (moviesToFilter) => moviesToFilter.filter((item) => item.duration < 40);
+
+    React.useEffect(() => {
+        setNewArr(films)
+    }, [])
 
     function handleCheckbox(boolean) {
         setIsShort(boolean)
@@ -27,11 +30,9 @@ function Movies({ isBurger, onBurger, films, loggedIn, saveMovie, onDelete, movi
         setIsinputvalue(value)
     }
 
-    function writeNewArr(newArr) {
-        setNewArr(newArr)
+    function writeNewArr(searchArr) {
+        setNewArr(searchArr)
     }
-
-    // 3. тест
 
     // проверка данных фильмов из localStorage
     React.useEffect(() => {
@@ -40,15 +41,12 @@ function Movies({ isBurger, onBurger, films, loggedIn, saveMovie, onDelete, movi
             localMovies = []
         }
         setNewArr(localMovies);
-        console.log(isNewArr)
     }, [])
 
     // добавление данных фильмов в localStorage
     React.useEffect(() => {
         localStorage.setItem('films', JSON.stringify(isNewArr));
     }, [isNewArr])
-
-
 
     function handleButton() {
 
@@ -63,8 +61,8 @@ function Movies({ isBurger, onBurger, films, loggedIn, saveMovie, onDelete, movi
         setIsTextSearch(false);
 
         return films.filter((movie) => {
-            if (isShort) {
-                return findMovies(movie, isinputvalue) && movie.duration < 40;
+            if (!isShort) {
+                return findMovies(movie, isinputvalue);
             } else {
                 return findMovies(movie, isinputvalue);
             }
@@ -73,9 +71,9 @@ function Movies({ isBurger, onBurger, films, loggedIn, saveMovie, onDelete, movi
 
     return (
         <section className="movies">
-            <Header isBurger={isBurger} onBurger={onBurger} loggedIn={loggedIn} checkbox={handleCheckbox} />
-            <SearchForm keyword={isinputvalue} isinputvalue={handleKeyword} submit={handleButton} checkBoxClick={handleCheckbox} newArr={writeNewArr} />
-            <MoviesCardList movies={isNewArr} saveMovie={saveMovie} onDelete={onDelete} moviesSaved={moviesSaved} />
+            <Header isBurger={isBurger} onBurger={onBurger} loggedIn={loggedIn} />
+            <SearchForm keyword={isinputvalue} isinputvalue={handleKeyword} submit={handleButton} checkbox={handleCheckbox} searchArr={writeNewArr} />
+            <MoviesCardList movies={isShort ? filterShortFilm(isNewArr) : isNewArr} saveMovie={saveMovie} onDelete={onDelete} moviesSaved={moviesSaved} />
             <Footer />
         </section>
     )

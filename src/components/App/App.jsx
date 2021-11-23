@@ -4,7 +4,7 @@ import React from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import Main from '../Main/Main'
-import { Route, Switch, useHistory } from "react-router-dom";
+import { Route, Switch, useHistory, useLocation } from "react-router-dom";
 import Register from "../Register/Register"
 import Profile from '../Profile/Profile';
 import Movies from '../Movies/Movies';
@@ -19,14 +19,14 @@ import * as auth from '../../utils/auth'
 export default function App() {
 
     const history = useHistory();
+    const location = useLocation();
 
     const [isBurger, setIsBurger] = React.useState(false);
     const [isPreloader, setIsPreloader] = React.useState(false);
     const [currentUser, setCurrentUser] = React.useState({});
     const [movies, setMovies] = React.useState([]);
-    const [loggedIn, setLoggedIn] = React.useState(false);
     const [moviesSaved, setMoviesSavied] = React.useState([]);
-
+    const [loggedIn, setLoggedIn] = React.useState(false);
 
     function handleBurger() {
         setIsBurger(!isBurger);
@@ -34,6 +34,7 @@ export default function App() {
 
     React.useEffect(() => {
         //взятие статуса токена из локального хранилища
+        const path = location.pathname;
         const token = localStorage.getItem("token");
         if (token) {
             auth.checkToken(token)
@@ -41,14 +42,16 @@ export default function App() {
                     // setUserEmail(res.email);
                     setLoggedIn(true);
                     //даём доступ к оснавной странице
-                    history.push("/movies");
+                    history.push(path);
 
                     //возвращаем данные пользователя из базы данных
                     mainApi.getProfileInfo(token).then((result) => {
                         //выполняем запись полученных данных в переменную состояния
-                        setCurrentUser(result);
-                        showSavedMovies();
-                    });
+
+                        setCurrentUser(result)
+
+                        getStartMovies()
+                    })
                 })
                 .catch((err) => {
                     alert(err);
@@ -65,7 +68,7 @@ export default function App() {
             });
     }, []);
 
-    function showSavedMovies() {
+    function getStartMovies() {
         setIsPreloader(true);
         const token = localStorage.getItem("token");
         //показываем все карточки из базы данных
@@ -100,23 +103,19 @@ export default function App() {
         mainApi
             .removeCard(_id, token)
             .then((res) => {
-                console.log(`этот id надо удалить ${_id}`)
                 const newMoviesList = moviesSaved.filter((m) => {
-                    console.log(m)
                     if (_id === m.id) {
                         return false
                     } else {
                         return true
                     }
-                })
+                });
                 setMoviesSavied(newMoviesList);
-                console.log(newMoviesList)
             })
             .catch((err) => {
                 alert(err);
             })
             .finally(() => setIsPreloader(false))
-
     }
 
     //регестрируем нового пользователя
@@ -124,9 +123,7 @@ export default function App() {
         setIsPreloader(true);
         auth.register(name, email, password)
             .then((result) => {
-                console.log(result)
                 history.push('/signin');
-                // loginUser(email, password);
             })
             .catch((err) => {
                 alert(err);
@@ -140,16 +137,13 @@ export default function App() {
         auth.login(email, password)
             .then((res) => {
                 if (res.token) {
-
                     localStorage.setItem("token", res.token);
                     setLoggedIn(true);
                     history.push("/movies");
                     mainApi.getProfileInfo(res.token)
                         .then((result) => {
-                            console.log(result)
                             //выполняем запись полученных данных в переменную состояния
                             setCurrentUser(result);
-                            console.log(currentUser);
                         });
                 }
             })
@@ -160,13 +154,12 @@ export default function App() {
     }
 
     // изменение данных пользователя
-
     function handleUpdateUser(name, email) {
 
         setIsPreloader(true);
         const token = localStorage.getItem("token");
 
-        //выполняем запрос на сервер для отпраки новой информации о пользователе
+        //выполняем запрос на сервер для отправки новой информации о пользователе
         mainApi
             .putProfileInfo(name, email, token)
             .then((result) => {
@@ -189,22 +182,19 @@ export default function App() {
         const token = localStorage.getItem("token");
         setIsPreloader(true);
         // Отправляем запрос в API и создаём карточку
-        console.log(card.country,
-            card.director,
-            card.duration,
-            card.year,
-            card.description,
-            `https://api.nomoreparties.co${card.image.url}`,
-            card.trailerLink,
-            `https://api.nomoreparties.co${card.image.url}`,
-            card.id,
-            card.nameEN,
-            card.nameRU,
-        )
-        console.log(token)
         mainApi
             .addCard(card, token)
-            .then((newCard) => {
+            .then((item) => {
+                const newCard = {
+                    //возвращаем массив с нужными данными для создания начальных карточек
+                    key: item._id,
+                    id: item.movieId,
+                    image: item.image,
+                    nameRU: item.nameRU,
+                    duration: item.duration,
+                    owner: item.owner,
+                    trailer: item.trailer
+                };
                 setMoviesSavied([newCard, ...moviesSaved]);
             })
             .catch((err) => {
@@ -215,24 +205,18 @@ export default function App() {
 
     return (
         <div className="app">
-
             <CurrentUserContext.Provider value={currentUser}>
-
                 <Preloader visible={isPreloader} />
-
                 <Switch>
-
                     <Route exact path="/">
                         <Main isBurger={isBurger} onBurger={handleBurger} loggedIn={loggedIn} />
                     </Route>
 
-
                     <ProtectedRoute path="/movies" isPreloader={isPreloader} setIsPreloader={setIsPreloader} component={Movies} isBurger={isBurger} loggedIn={loggedIn} films={movies} onBurger={handleBurger} saveMovie={handleSaveMovies} moviesSaved={moviesSaved} onDelete={handleCardDelete} />
 
-                    <ProtectedRoute path="/saved-movies" component={SavedMovies} loggedIn={loggedIn} isBurger={isBurger} films={moviesSaved} onBurger={handleBurger} onDelete={handleCardDelete} />
+                    <ProtectedRoute path="/saved-movies" component={SavedMovies} loggedIn={loggedIn} isBurger={isBurger} films={moviesSaved} onBurger={handleBurger} onDeleteCard={handleCardDelete} />
 
-                    <ProtectedRoute path="/profile" loggedIn={loggedIn} component={Profile} isBurger={isBurger} onBurger={handleBurger} signOut={signOut} onUpdateUser={handleUpdateUser} />
-
+                    <ProtectedRoute path="/profile" component={Profile} currentUser={currentUser} loggedIn={loggedIn} isBurger={isBurger} onBurger={handleBurger} signOut={signOut} onUpdateUser={handleUpdateUser} />
 
                     <Route path="/signup">
                         <Register onRegister={registerUser} />
@@ -245,9 +229,7 @@ export default function App() {
                     <Route path="*">
                         <Error message="Страница не найдена" status="404" />
                     </Route>
-
                 </Switch>
-
             </CurrentUserContext.Provider>
         </div >
     );

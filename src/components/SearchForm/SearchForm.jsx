@@ -1,11 +1,9 @@
 import './SearchForm.css'
-
 import React from "react";
-
 import icon from "../../images/searchicon.svg";
 
 
-function SearchForm({ keyword, isinputvalue, newArr, submit, checkBoxClick }) {
+function SearchForm({ keyword, isinputvalue, searchArr, submit, checkbox }) {
 
     const [isError, setIsError] = React.useState(false);
     const [isChange, setIsChange] = React.useState(true);
@@ -13,7 +11,7 @@ function SearchForm({ keyword, isinputvalue, newArr, submit, checkBoxClick }) {
 
     function handleChange() {
         setIsChange(!isChange);
-        checkBoxClick(isChange)
+        checkbox(isChange)
     }
 
     function handleSearchChange(e) {
@@ -26,9 +24,8 @@ function SearchForm({ keyword, isinputvalue, newArr, submit, checkBoxClick }) {
 
         if (!keyword) {
             setIsError(true);
-            // console.log("not good")
         } else {
-            newArr([])
+            searchArr([])
             const arrMovies = submit();
 
             if (arrMovies.length === 0) {
@@ -36,13 +33,9 @@ function SearchForm({ keyword, isinputvalue, newArr, submit, checkBoxClick }) {
             } else {
                 setSearchSuccessful(false);
             }
-
-            newArr(arrMovies);
-            console.log(arrMovies)
+            searchArr(arrMovies);
         }
     }
-
-
 
     return (
         <section className="searchform">
@@ -56,13 +49,10 @@ function SearchForm({ keyword, isinputvalue, newArr, submit, checkBoxClick }) {
                 </form>
                 <div className="searchform__addition">
                     <input className="searchform__checkbox" id="short-films" type="checkbox" onChange={handleChange} />
-                    {/* <input className="searchform__checkbox" id="short-films" type="checkbox" onChange={checkbox} checked={checkbox ? true : false} /> */}
                     <label className="searchform__label" htmlFor="short-films"></label>
                     <span className="searchform__text">Короткометражки</span>
                 </div>
             </div>
-
-
         </section>
     )
 }

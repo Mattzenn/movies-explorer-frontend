@@ -8,7 +8,6 @@ import Footer from '../Footer/Footer'
 import Header from '../Header/Header'
 import './Main.css'
 
-
 export default function Main({ isBurger, onBurger, loggedIn }) {
 
     return (

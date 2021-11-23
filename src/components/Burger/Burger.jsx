@@ -9,9 +9,9 @@ function Burger({ isBurger, onClose }) {
                 <button type="button" className="burger__button" onClick={onClose} />
                 <div className="burger__conteiner">
                     <div className="burger__links">
-                        <Link activeClassName="burger__link_active" exact to="/" className="burger__link">Главная</Link>
-                        <Link activeClassName="burger__link_active" to="/movies" className="burger__link">Фильмы</Link>
-                        <Link activeClassName="burger__link_active" to="/saved-movies" className="burger__link">Сохранённые фильмы</Link>
+                        <Link activeClassName="burger__link_active" exact to="/" onClick={onClose} className="burger__link">Главная</Link>
+                        <Link activeClassName="burger__link_active" to="/movies" onClick={onClose} className="burger__link">Фильмы</Link>
+                        <Link activeClassName="burger__link_active" to="/saved-movies" onClick={onClose} className="burger__link">Сохранённые фильмы</Link>
                     </div>
                     <Link to="/profile" className="header__logged-button header__logged-button_account">Аккаунт<span className="header__account-icon"></span></Link>
                 </div>

@@ -8,11 +8,8 @@ export default function MoviesCardList({ movies, saveMovie, onDelete, moviesSave
     const [startCard, setSartCard] = React.useState(0);
     const movieCards = movies.slice(0, startCard);
 
-    console.log(moviesSaved)
     // Сравнение фильмов и проверка на лайк
-    function getSavedMovieCard(moviesSaved, movie) {
-        console.log(moviesSaved)
-        console.log(movie.id)
+    function getSavedMovieCard(movie) {
         return moviesSaved.find(savedMovie => savedMovie.id === movie.id)
     };
 
@@ -36,7 +33,7 @@ export default function MoviesCardList({ movies, saveMovie, onDelete, moviesSave
         } if (window.innerWidth >= 768 && window.innerWidth <= 1160) {
             return setSartCard(startCard + 2)
         } if (window.innerWidth > 1160) {
-            return setSartCard(startCard + 4)
+            return setSartCard(startCard + 3)
         }
     }
 
@@ -53,7 +50,7 @@ export default function MoviesCardList({ movies, saveMovie, onDelete, moviesSave
         <section className="items">
             <ul className="movies__cardlist">
                 {movieCards.map((movie) => (
-                    <MoviesCard saved={getSavedMovieCard(moviesSaved, movie)} key={movie._id} movie={movie} saveMovie={saveMovie} onDelete={onDelete} />
+                    <MoviesCard saved={getSavedMovieCard(movie)} key={movie.id} movie={movie} saveMovie={saveMovie} onDelete={onDelete} />
                 ))}
             </ul>
             <div className="button__container">
