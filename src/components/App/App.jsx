@@ -4,7 +4,7 @@ import React from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import Main from '../Main/Main'
-import { Route, Switch, useHistory, useLocation } from "react-router-dom";
+import { Route, Switch, useHistory, Redirect, useLocation } from "react-router-dom";
 import Register from "../Register/Register"
 import Profile from '../Profile/Profile';
 import Movies from '../Movies/Movies';
@@ -27,6 +27,8 @@ export default function App() {
     const [movies, setMovies] = React.useState([]);
     const [moviesSaved, setMoviesSavied] = React.useState([]);
     const [loggedIn, setLoggedIn] = React.useState(false);
+    const [editIsSuccess, setEditIsSuccess] = React.useState(false);
+    const [editIsFailed, setEditIsFailed] = React.useState(false);
 
     function handleBurger() {
         setIsBurger(!isBurger);
@@ -41,17 +43,19 @@ export default function App() {
                 .then((res) => {
                     // setUserEmail(res.email);
                     setLoggedIn(true);
-                    //даём доступ к оснавной странице
-                    history.push(path);
 
                     //возвращаем данные пользователя из базы данных
                     mainApi.getProfileInfo(token).then((result) => {
                         //выполняем запись полученных данных в переменную состояния
 
                         setCurrentUser(result)
+                        localStorage.setItem('currentUser', JSON.stringify(result.data));
 
                         getStartMovies()
                     })
+
+                    //даём доступ к оснавным страницам
+                    history.push(path);
                 })
                 .catch((err) => {
                     alert(err);
@@ -62,6 +66,7 @@ export default function App() {
             .getMovies()
             .then((data) => {
                 setMovies(data)
+                localStorage.setItem('films', JSON.stringify(data));
             })
             .catch((err) => {
                 alert(err);
@@ -123,6 +128,7 @@ export default function App() {
         setIsPreloader(true);
         auth.register(name, email, password)
             .then((result) => {
+                loginUser(email, password)
                 history.push('/signin');
             })
             .catch((err) => {
@@ -142,8 +148,10 @@ export default function App() {
                     history.push("/movies");
                     mainApi.getProfileInfo(res.token)
                         .then((result) => {
+                            localStorage.setItem('currentUser', JSON.stringify(result.data));
                             //выполняем запись полученных данных в переменную состояния
                             setCurrentUser(result);
+                            getStartMovies();
                         });
                 }
             })
@@ -163,19 +171,31 @@ export default function App() {
         mainApi
             .putProfileInfo(name, email, token)
             .then((result) => {
+                setEditIsSuccess(true);
                 //выполняем запись полученных данных в переменную состояния
                 setCurrentUser(result);
+                setTimeout(() => {
+                    setEditIsSuccess(false);
+                }, 3000);
             })
             .catch((err) => {
                 alert(err);
+                setEditIsFailed(true);
+                setTimeout(() => {
+                    setEditIsFailed(false);
+                }, 3000);
             })
             .finally(() => setIsPreloader(false))
     }
 
     //выход пользователя
     function signOut() {
+        localStorage.removeItem("currentUser");
         localStorage.removeItem("token");
+        setCurrentUser({});
+        setMoviesSavied([]);
         setLoggedIn(false);
+        localStorage.clear();
     }
 
     function handleSaveMovies(card) {
@@ -212,17 +232,19 @@ export default function App() {
                         <Main isBurger={isBurger} onBurger={handleBurger} loggedIn={loggedIn} />
                     </Route>
 
-                    <ProtectedRoute path="/movies" isPreloader={isPreloader} setIsPreloader={setIsPreloader} component={Movies} isBurger={isBurger} loggedIn={loggedIn} films={movies} onBurger={handleBurger} saveMovie={handleSaveMovies} moviesSaved={moviesSaved} onDelete={handleCardDelete} />
+                    <ProtectedRoute path="/movies" component={Movies} isPreloader={isPreloader} setIsPreloader={setIsPreloader} isBurger={isBurger} loggedIn={loggedIn} films={movies} onBurger={handleBurger} saveMovie={handleSaveMovies} moviesSaved={moviesSaved} onDelete={handleCardDelete} />
 
                     <ProtectedRoute path="/saved-movies" component={SavedMovies} loggedIn={loggedIn} isBurger={isBurger} films={moviesSaved} onBurger={handleBurger} onDeleteCard={handleCardDelete} />
 
-                    <ProtectedRoute path="/profile" component={Profile} currentUser={currentUser} loggedIn={loggedIn} isBurger={isBurger} onBurger={handleBurger} signOut={signOut} onUpdateUser={handleUpdateUser} />
+                    <ProtectedRoute path="/profile" component={Profile} loggedIn={loggedIn} isBurger={isBurger} onBurger={handleBurger} signOut={signOut} onUpdateUser={handleUpdateUser} editIsSuccess={editIsSuccess} editIsFailed={editIsFailed} />
 
                     <Route path="/signup">
+                        {loggedIn ? <Redirect to="/" /> : ''}
                         <Register onRegister={registerUser} />
                     </Route>
 
                     <Route path="/signin">
+                        {loggedIn ? <Redirect to="/" /> : ''}
                         <Login onLogin={loginUser} />
                     </Route>
 

@@ -25,14 +25,14 @@ function Login({ onLogin }) {
 
 
                     <label className="login__input-label">E-mail</label>
-                    <input name="email" type="email" className="login__input login__input_type_login" id="email" placeholder="Email" minLength="6" maxLength="40" required onChange={handleChange} value={values.email || ''} />
+                    <input name="email" type="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" className="login__input login__input_type_login" id="email" placeholder="Email" minLength="6" maxLength="40" required onChange={handleChange} value={values.email || ''} />
                     <span id="login__input-error" className="login__input-error">{errors.email}</span>
 
                     <label className="login__input-label">Пароль</label>
                     <input name="password" type="password" className="login__input login__input_type_login" id="password" placeholder="Пароль" minLength="6" maxLength="40" required onChange={handleChange} value={values.password || ''} />
                     <span id="login__input-error" className="login__input-error">{errors.password}</span>
 
-                    <button type="submit" className={`login__button ${!isValid && 'login__button_disabled'}`} disabled={!isValid} onClick={handleSubmit}>Зарегистрироваться</button>
+                    <button type="submit" className={`login__button ${!isValid && 'login__button_disabled'}`} disabled={!isValid} onClick={handleSubmit}>Войти</button>
                     <p className='login__link'>Еще не зарегистрированы? <Link className='login__link-way' to='/signup'>Регистрация</Link></p>
                 </form>
             </div>

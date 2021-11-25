@@ -2,6 +2,7 @@ import './MoviesCardList.css'
 import React from "react";
 import MoviesCard from '../MoviesCard/MoviesCard';
 import { useLocation } from "react-router-dom";
+import { DESKTOP_WIDTH, TABLET_WIDTH } from "../../utils/constants"
 
 export default function MoviesCardList({ movies, saveMovie, onDelete, moviesSaved }) {
     const location = useLocation();
@@ -14,11 +15,11 @@ export default function MoviesCardList({ movies, saveMovie, onDelete, moviesSave
     };
 
     function showsnumberList() {
-        if (window.innerWidth < 768) {
+        if (window.innerWidth < TABLET_WIDTH) {
             return setSartCard(5)
-        } if (window.innerWidth >= 768 && window.innerWidth <= 1160) {
+        } if (window.innerWidth >= TABLET_WIDTH && window.innerWidth <= DESKTOP_WIDTH) {
             return setSartCard(8)
-        } if (window.innerWidth > 1160) {
+        } if (window.innerWidth > DESKTOP_WIDTH) {
             return setSartCard(12)
         }
     }
@@ -28,11 +29,11 @@ export default function MoviesCardList({ movies, saveMovie, onDelete, moviesSave
     }, [])
 
     function handleMore() {
-        if (window.innerWidth < 768) {
+        if (window.innerWidth < TABLET_WIDTH) {
             return setSartCard(startCard + 1)
-        } if (window.innerWidth >= 768 && window.innerWidth <= 1160) {
+        } if (window.innerWidth >= TABLET_WIDTH && window.innerWidth <= DESKTOP_WIDTH) {
             return setSartCard(startCard + 2)
-        } if (window.innerWidth > 1160) {
+        } if (window.innerWidth > DESKTOP_WIDTH) {
             return setSartCard(startCard + 3)
         }
     }

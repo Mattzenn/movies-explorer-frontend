@@ -1,5 +1,5 @@
 import './SavedMovies.css'
-
+import { SHORT_MOVIE_DURATION_MIN } from "../../utils/constants"
 import React from "react";
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
@@ -14,7 +14,7 @@ function SavedMovies({ isBurger, onBurger, loggedIn, films, onDeleteCard, saveMo
 
     const [isShort, setIsShort] = React.useState(false);
 
-    const filterShortFilm = (moviesToFilter) => moviesToFilter.filter((item) => item.duration < 40);
+    const filterShortFilm = (moviesToFilter) => moviesToFilter.filter((item) => item.duration < SHORT_MOVIE_DURATION_MIN);
 
     function handleCheckbox(boolean) {
         setIsShort(boolean)

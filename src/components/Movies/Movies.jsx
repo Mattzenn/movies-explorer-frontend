@@ -4,8 +4,7 @@ import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
 import React from "react";
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-
-
+import { SHORT_MOVIE_DURATION_MIN } from "../../utils/constants"
 
 function Movies({ isBurger, onBurger, films, loggedIn, saveMovie, onDelete, moviesSaved, setIsPreloader }) {
 
@@ -13,10 +12,8 @@ function Movies({ isBurger, onBurger, films, loggedIn, saveMovie, onDelete, movi
     const [isNewArr, setNewArr] = React.useState([films]);
     const [isTextSearch, setIsTextSearch] = React.useState(true);
     const [isShort, setIsShort] = React.useState(false);
-    // const [searchSuccessful, setSearchSuccessful] = React.useState(false);
 
-
-    const filterShortFilm = (moviesToFilter) => moviesToFilter.filter((item) => item.duration < 40);
+    const filterShortFilm = (moviesToFilter) => moviesToFilter.filter((item) => item.duration < SHORT_MOVIE_DURATION_MIN);
 
     React.useEffect(() => {
         setNewArr(films)
@@ -40,7 +37,9 @@ function Movies({ isBurger, onBurger, films, loggedIn, saveMovie, onDelete, movi
         if (localMovies === null) {
             localMovies = []
         }
-        setNewArr(localMovies);
+        else {
+            setNewArr(localMovies);
+        }
     }, [])
 
     // добавление данных фильмов в localStorage

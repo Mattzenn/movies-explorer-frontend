@@ -41,7 +41,7 @@ function MoviesCard({ movie, onDelete, saved, saveMovie }) {
                 <img className="movies__card-image" src={location.pathname === "/movies" ? `https://api.nomoreparties.co${movie.image.url}` : movie.image} alt={movie.nameRU}></img>
             </a>
             <div className="movies__container">
-                <h2 className="movies__card-title">{movie.id}{movie.nameRU}</h2>
+                <h2 className="movies__card-title">{movie.nameRU}</h2>
                 <p className="movies__card-movie-time">{transformTime(movie.duration)}</p>
             </div>
 

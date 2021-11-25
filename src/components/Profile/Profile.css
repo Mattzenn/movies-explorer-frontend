@@ -18,6 +18,14 @@
   margin-bottom: 16px;
 }
 
+.profile__form-sbmt-success {
+  color: #2BE080;
+}
+
+.profile__form-sbmt-failed {
+  color: #EE3465;
+}
+
 .profile__input-error_visible {
   opacity: 1;
   visibility: visible;
