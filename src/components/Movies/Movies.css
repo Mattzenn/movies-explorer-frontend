@@ -1,0 +1,18 @@
+.movies {
+  margin: 0 auto;
+  width: calc(100% - 140px);
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 768px) {
+  .movies {
+    width: calc(100% - 60px);
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .movies {
+    width: calc(100% - 20px);
+  }
+}

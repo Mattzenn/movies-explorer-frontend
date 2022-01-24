@@ -1,0 +1,88 @@
+.burger-box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    max-width: 1280px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: flex-end;
+    z-index: 2;
+}
+
+.burger-box_off {
+    display: none;
+}
+
+.burger {
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 768px) {
+    .burger {
+        width: 520px;
+    }
+}
+
+.burger__button {
+    margin: 14px 14px 0 0;
+    padding: 0;
+    width: 22px;
+    height: 22px;
+    align-self: flex-end;
+    border: none;
+    background-color: white;
+    background-image: url(../../images/close.svg);
+    background-position: center;
+}
+
+.burger__button:hover {
+    outline: none;
+    opacity: 0.6;
+}
+
+.burger__conteiner {
+    height: 76%;
+    margin: 100px auto 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.burger__links {
+    display: grid;
+    row-gap: 24px;
+}
+
+.burger__link {
+    text-decoration: none;
+    text-align: center;
+    color: #000;
+    padding-bottom: 7px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.burger__link:hover {
+    opacity: 0.4;
+}
+
+.burger__link_active {
+    border-bottom: solid 1px black;
+}
+
+.burger__link_to_profile {
+    width: 100px;
+    margin: 0 auto;
+    text-align: start;
+    background-image: url(../../images/icon__COLOR_icon-main.svg);
+    background-repeat: no-repeat;
+    background-position: right;
+}

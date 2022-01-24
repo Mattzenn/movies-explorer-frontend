@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0cbd7152.chunk.css",
+    "main.js": "/static/js/main.387ad793.chunk.js",
+    "main.js.map": "/static/js/main.387ad793.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.b5347af8.js",
+    "runtime-main.js.map": "/static/js/runtime-main.b5347af8.js.map",
+    "static/js/2.6c291517.chunk.js": "/static/js/2.6c291517.chunk.js",
+    "static/js/2.6c291517.chunk.js.map": "/static/js/2.6c291517.chunk.js.map",
+    "static/js/3.d3a6dd3e.chunk.js": "/static/js/3.d3a6dd3e.chunk.js",
+    "static/js/3.d3a6dd3e.chunk.js.map": "/static/js/3.d3a6dd3e.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.0cbd7152.chunk.css.map": "/static/css/main.0cbd7152.chunk.css.map",
+    "static/js/2.6c291517.chunk.js.LICENSE.txt": "/static/js/2.6c291517.chunk.js.LICENSE.txt",
+    "static/media/Header.css": "/static/media/burger.08035af1.svg",
+    "static/media/Burger.css": "/static/media/icon__COLOR_icon-main.20a52938.svg",
+    "static/media/MoviesCard.css": "/static/media/save3d.2ca54658.svg",
+    "static/media/Login.css": "/static/media/logoproject.8f97642a.svg",
+    "static/media/SearchForm.css": "/static/media/search_icon.8eb94f4e.svg",
+    "static/media/searchicon.9d65490b.svg": "/static/media/searchicon.9d65490b.svg",
+    "static/media/Portfolio.css": "/static/media/text__COLOR_font-main.2f133fb2.svg",
+    "static/media/Promo.css": "/static/media/text__COLOR_landing-logo.5341af97.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b5347af8.js",
+    "static/js/2.6c291517.chunk.js",
+    "static/css/main.0cbd7152.chunk.css",
+    "static/js/main.387ad793.chunk.js"
+  ]
+}
