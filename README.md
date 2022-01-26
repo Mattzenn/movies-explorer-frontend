@@ -12,7 +12,8 @@
 
 В рамках данного проекта был реализован фронтенд (с использованием фреймворка React.js) и бэкенд (Node.js, Express, MongodDB).
 
-* [Ссылка на проект](mattzenn.nomoredomains.club)
+* [Адрес размещения фронтенда на сервере: ](mattzenn.nomoredomains.club)
+* Ссылка: на репозиторий бэкенда https://github.com/Mattzenn/movies-explorer-api
 
 
 ## Технологии:
@@ -31,3 +32,15 @@
 * React JS
 * Functional Components
 * Client-side form validation (custom hook)
+
+## Языки:
+
+* JavaScript
+
+## Библиотеки:
+
+* Reactjs
+
+## Чеклист
+
+[Критерии диплома веб-разработка](https://code.s3.yandex.net/web-developer/static/new-program/web-diploma-criteria-2.0/index.html) 
