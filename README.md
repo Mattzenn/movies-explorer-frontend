@@ -12,6 +12,9 @@
 
 В рамках данного проекта был реализован фронтенд (с использованием фреймворка React.js) и бэкенд (Node.js, Express, MongodDB).
 
+### Ссылка на размещенный сайт на сервере: https://api.mattzenn-movies.nomoredomains.rocks
+### Ссылка: на репозиторий backend https://github.com/Mattzenn/movies-explorer-api
+
 * [Адрес размещения фронтенда на сервере: ](mattzenn.nomoredomains.club)
 * Ссылка: на репозиторий бэкенда https://github.com/Mattzenn/movies-explorer-api
 
