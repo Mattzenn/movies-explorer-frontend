@@ -3,7 +3,7 @@
 
 ## Создана в рамках учебы в [Яндекс.Практикум](https://praktikum.yandex.ru/) на курсе ["Веб-разработчик"](https://praktikum.yandex.ru/web/).
 
-### Ссылка на размещенный сайт на сервере: https://api.mattzenn-movies.nomoredomains.rocks
+### Ссылка на размещенный сайт на сервере: https://mattzenn-movies.nomoredomains.rocks/
 ### Ссылка: на репозиторий backend https://github.com/Mattzenn/movies-explorer-api
 
 ## Описание:
