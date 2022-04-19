@@ -3,6 +3,9 @@
 
 ## Создана в рамках учебы в [Яндекс.Практикум](https://praktikum.yandex.ru/) на курсе ["Веб-разработчик"](https://praktikum.yandex.ru/web/).
 
+### Ссылка на размещенный сайт на сервере: https://api.mattzenn-movies.nomoredomains.rocks
+### Ссылка: на репозиторий backend https://github.com/Mattzenn/movies-explorer-api
+
 ## Описание:
 
 "Movies Explorer" - это приложение схоже по функционалу с онлайн кинотеатром. В данном сервисе
@@ -11,13 +14,6 @@
 В проектной работе была применена работа с макетом в Figma, построение сложных сеток, расширенные возможности HTML и CSS, реализация адаптивной вёрстки посредством Flexbox, Grid Layout и Media queries.
 
 В рамках данного проекта был реализован фронтенд (с использованием фреймворка React.js) и бэкенд (Node.js, Express, MongodDB).
-
-### Ссылка на размещенный сайт на сервере: https://api.mattzenn-movies.nomoredomains.rocks
-### Ссылка: на репозиторий backend https://github.com/Mattzenn/movies-explorer-api
-
-* [Адрес размещения фронтенда на сервере: ](mattzenn.nomoredomains.club)
-* Ссылка: на репозиторий бэкенда https://github.com/Mattzenn/movies-explorer-api
-
 
 ## Технологии:
 
