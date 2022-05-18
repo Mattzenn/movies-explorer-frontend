@@ -42,4 +42,4 @@
 
 ## Чеклист
 
-[Критерии диплома веб-разработка](https://code.s3.yandex.net/web-developer/static/new-program/web-diploma-criteria-2.0/index.html) 
+[Критерии диплома веб-разработка:](https://code.s3.yandex.net/web-developer/static/new-program/web-diploma-criteria-2.0/index.html) 
